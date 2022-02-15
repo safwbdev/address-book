@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateContact } from "../../redux/action/listActions";
+import { updateContact } from "../../redux/action/contactActions";
 import { FaEdit } from "react-icons/fa";
 import Form from "./Form";
 import {

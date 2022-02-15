@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "./Form";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/action/listActions";
+import { addContact } from "../../redux/action/contactActions";
 import { v4 as uuidv4 } from "uuid";
 import {
   DialogActions,

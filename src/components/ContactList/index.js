@@ -2,7 +2,7 @@ import React from "react";
 import ContactCard from "./ContactCard";
 import { Grid, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { removeContact } from "../../redux/action/listActions";
+import { removeContact } from "../../redux/action/contactActions";
 import { NO_RESULTS, EMPTY_LIST_A, EMPTY_LIST_B } from "../../constants/lang";
 
 const Index = (props) => {

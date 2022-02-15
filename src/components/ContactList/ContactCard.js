@@ -22,7 +22,7 @@ import {
 } from "react-icons/fa";
 import { blue } from "@mui/material/colors";
 import { useDispatch } from "react-redux";
-import { updateContact } from "../../redux/action/listActions";
+import { updateContact } from "../../redux/action/contactActions";
 
 const ContactCard = (props) => {
   const { id, name, tel, email, image, category, favorite } = props.data;
