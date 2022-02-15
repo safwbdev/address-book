@@ -4,7 +4,7 @@ import { FaUserPlus, FaSearch } from "react-icons/fa";
 import { NAV_TITLE } from "../../constants/lang";
 import { Search, SearchIconWrapper, StyledInputBase } from "./StyledComponents";
 
-const SearchAppBar = (props) => {
+const SearchAppBar = ({ handleSearch, setOpenDialog }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -24,7 +24,7 @@ const SearchAppBar = (props) => {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
-              onChange={props.handleSearch}
+              onChange={handleSearch}
             />
           </Search>
 
@@ -34,7 +34,7 @@ const SearchAppBar = (props) => {
             color="inherit"
             aria-label="open drawer"
             sx={{ flexGrow: 0, mx: 0.5, display: { xs: "none", sm: "block" } }}
-            onClick={props.setOpenDialog}
+            onClick={setOpenDialog}
           >
             <FaUserPlus />
           </IconButton>

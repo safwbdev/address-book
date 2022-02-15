@@ -24,8 +24,8 @@ import { blue } from "@mui/material/colors";
 import { useDispatch } from "react-redux";
 import { updateContact } from "../../redux/action/contactActions";
 
-const ContactCard = (props) => {
-  const { id, name, tel, email, image, category, favorite } = props.data;
+const ContactCard = ({ data, handleRemove }) => {
+  const { id, name, tel, email, image, category, favorite } = data;
   const dispatch = useDispatch();
   const toggleFavorite = (id) => {
     dispatch(
@@ -45,11 +45,11 @@ const ContactCard = (props) => {
 
   const ActionButtons = ({ id }) => (
     <>
-      <EditForm data={props.data} />
+      <EditForm data={data} />
       <IconButton
         aria-label="delete"
         size="small"
-        onClick={() => props.handleRemove(id)}
+        onClick={() => handleRemove(id)}
       >
         <FaTrash />
       </IconButton>

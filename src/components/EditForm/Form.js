@@ -17,7 +17,18 @@ import {
 } from "../../constants/lang";
 import { categoryList } from "../../constants/categories";
 
-const Form = (props) => {
+const Form = ({
+  image,
+  name,
+  tel,
+  email,
+  category,
+  handleImage,
+  handleName,
+  handleTel,
+  handleEmail,
+  handleCategory,
+}) => {
   return (
     <Grid container spacing={2}>
       <Grid container direction="row" alignItems="center" my={3}>
@@ -33,7 +44,7 @@ const Form = (props) => {
             marginBottom: { xs: "1em", sm: 0 },
           }}
         >
-          <Avatar src={props.image} sx={{ width: "80px", height: "80px" }} />
+          <Avatar src={image} sx={{ width: "80px", height: "80px" }} />
         </Grid>
         <Grid
           item
@@ -41,7 +52,7 @@ const Form = (props) => {
           sm={9}
           style={{ display: "flex", justifyContent: "start" }}
         >
-          <FileBase64 onDone={props.handleImage.bind(this)} multiple={false} />
+          <FileBase64 onDone={handleImage.bind(this)} multiple={false} />
         </Grid>
       </Grid>
       <Grid item xs={12} md={12}>
@@ -50,8 +61,8 @@ const Form = (props) => {
           required
           id="outlined-required"
           label={PLACEHOLDER_NAME}
-          onChange={props.handleName}
-          value={props.name}
+          onChange={handleName}
+          value={name}
         />
       </Grid>
       <Grid item xs={12} md={12}>
@@ -60,8 +71,8 @@ const Form = (props) => {
           required
           id="outlined-required"
           label={PLACEHOLDER_PHONE}
-          onChange={props.handleTel}
-          value={props.tel}
+          onChange={handleTel}
+          value={tel}
         />
       </Grid>
       <Grid item xs={12} md={12}>
@@ -70,8 +81,8 @@ const Form = (props) => {
           required
           id="outlined-required"
           label={PLACEHOLDER_EMAIL}
-          onChange={props.handleEmail}
-          value={props.email}
+          onChange={handleEmail}
+          value={email}
         />
       </Grid>
       <Grid item xs={12} md={12}>
@@ -82,9 +93,9 @@ const Form = (props) => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={props.category}
+            value={category}
             label={PLACEHOLDER_CATEGORY}
-            onChange={props.handleCategory}
+            onChange={handleCategory}
           >
             {categoryList.map(({ value, label }) => {
               return <MenuItem value={value}>{label}</MenuItem>;

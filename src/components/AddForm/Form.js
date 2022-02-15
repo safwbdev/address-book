@@ -17,7 +17,15 @@ import {
 } from "../../constants/lang";
 import { categoryList } from "../../constants/categories";
 
-const Form = (props) => {
+const Form = ({
+  category,
+  image,
+  handleImage,
+  handleName,
+  handleTel,
+  handleEmail,
+  handleCategory,
+}) => {
   return (
     <Grid container spacing={2}>
       <Grid container direction="row" alignItems="center" my={3}>
@@ -33,7 +41,7 @@ const Form = (props) => {
             marginBottom: { xs: "1em", sm: 0 },
           }}
         >
-          <Avatar src={props.image} sx={{ width: "80px", height: "80px" }} />
+          <Avatar src={image} sx={{ width: "80px", height: "80px" }} />
         </Grid>
         <Grid
           item
@@ -41,7 +49,7 @@ const Form = (props) => {
           sm={9}
           style={{ display: "flex", justifyContent: "start" }}
         >
-          <FileBase64 onDone={props.handleImage.bind(this)} />
+          <FileBase64 onDone={handleImage.bind(this)} />
         </Grid>
       </Grid>
       <Grid item xs={12} md={12}>
@@ -50,7 +58,7 @@ const Form = (props) => {
           required
           id="outlined-required"
           label={PLACEHOLDER_NAME}
-          onChange={props.handleName}
+          onChange={handleName}
         />
       </Grid>
       <Grid item xs={12} md={12}>
@@ -59,7 +67,7 @@ const Form = (props) => {
           required
           id="outlined-required"
           label={PLACEHOLDER_PHONE}
-          onChange={props.handleTel}
+          onChange={handleTel}
         />
       </Grid>
       <Grid item xs={12} md={12}>
@@ -68,7 +76,7 @@ const Form = (props) => {
           required
           id="outlined-required"
           label={PLACEHOLDER_EMAIL}
-          onChange={props.handleEmail}
+          onChange={handleEmail}
         />
       </Grid>
 
@@ -80,9 +88,9 @@ const Form = (props) => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={props.category}
+            value={category}
             label={PLACEHOLDER_CATEGORY}
-            onChange={props.handleCategory}
+            onChange={handleCategory}
           >
             {categoryList.map(({ value, label }) => {
               return <MenuItem value={value}>{label}</MenuItem>;

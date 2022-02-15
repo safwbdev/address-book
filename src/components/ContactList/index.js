@@ -5,21 +5,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeContact } from "../../redux/action/contactActions";
 import { NO_RESULTS, EMPTY_LIST_A, EMPTY_LIST_B } from "../../constants/lang";
 
-const Index = (props) => {
+const Index = ({ searchQuery, filter, gridCheck }) => {
   const listState = useSelector((state) => state.contacts);
   const dispatch = useDispatch();
   const handleRemove = (id) => dispatch(removeContact(id));
 
   let collection = listState.sort((a, b) => a.name.localeCompare(b.name));
 
-  if (props.searchQuery.length > 0) {
+  if (searchQuery.length > 0) {
     collection = collection.filter((val) => {
       return val.name
         .toLocaleLowerCase()
-        .match(props.searchQuery.toLocaleLowerCase());
+        .match(searchQuery.toLocaleLowerCase());
     });
   }
-  console.log(props.filter);
+  console.log(filter);
 
   return (
     <Grid
@@ -63,14 +63,14 @@ const Index = (props) => {
         </Grid>
       )}
       {collection.map((val) => {
-        if (props.filter === val.category) {
+        if (filter === val.category) {
           return (
             <Grid
-              key={val.id}
               item
+              key={val.id}
               xs={12}
-              sm={props.gridCheck}
-              md={props.gridCheck}
+              sm={gridCheck}
+              md={gridCheck}
               sx={{
                 padding: { xs: "1em 0 !important", sm: "0.5em !important" },
               }}
@@ -78,14 +78,14 @@ const Index = (props) => {
               <ContactCard data={val} handleRemove={handleRemove} />
             </Grid>
           );
-        } else if (props.filter === "Favourite" && val.favorite === true) {
+        } else if (filter === "Favourite" && val.favorite === true) {
           return (
             <Grid
-              key={val.id}
               item
+              key={val.id}
               xs={12}
-              sm={props.gridCheck}
-              md={props.gridCheck}
+              sm={gridCheck}
+              md={gridCheck}
               sx={{
                 padding: { xs: "1em 0 !important", sm: "0.5em !important" },
               }}
@@ -93,14 +93,14 @@ const Index = (props) => {
               <ContactCard data={val} handleRemove={handleRemove} />
             </Grid>
           );
-        } else if (props.filter === "") {
+        } else if (filter === "") {
           return (
             <Grid
-              key={val.id}
               item
+              key={val.id}
               xs={12}
-              sm={props.gridCheck}
-              md={props.gridCheck}
+              sm={gridCheck}
+              md={gridCheck}
               sx={{
                 padding: { xs: "1em 0 !important", sm: "0.5em !important" },
               }}

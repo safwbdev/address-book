@@ -16,7 +16,7 @@ import {
   TITLE_NEW_CONTACT,
 } from "../../constants/lang";
 
-const Index = (props) => {
+const Index = ({ setOpenDialog, openDialog }) => {
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
@@ -37,7 +37,7 @@ const Index = (props) => {
     setImage("");
   };
   const handleClose = () => {
-    props.setOpenDialog(false);
+    setOpenDialog(false);
     clearALL();
   };
 
@@ -56,14 +56,14 @@ const Index = (props) => {
       })
     );
     clearALL();
-    props.setOpenDialog(false);
+    setOpenDialog(false);
   };
 
   let checkAll = name && tel && email && category;
 
   return (
     <div>
-      <Dialog onClose={handleClose} open={props.openDialog}>
+      <Dialog onClose={handleClose} open={openDialog}>
         <DialogTitle>{TITLE_NEW_CONTACT}</DialogTitle>
         <DialogContent>
           <Form

@@ -1,10 +1,23 @@
 import React, { useState } from "react";
-import { Container, Fab, Button, Grid } from "@mui/material";
+import {
+  Container,
+  Fab,
+  Button,
+  Grid,
+  FormControl,
+  MenuItem,
+  Select,
+  Box,
+  InputLabel,
+} from "@mui/material";
 import AddForm from "./components/AddForm";
 import ContactList from "./components/ContactList";
 import Navbar from "./components/Navbar";
 import { FaUserPlus } from "react-icons/fa";
+import { filterList } from "./constants/filters";
+import { RiGridFill } from "react-icons/ri";
 import "./App.css";
+import { FILTER_TITLE, TOGGLE_GRID } from "./constants/lang";
 
 function App() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -23,8 +36,8 @@ function App() {
     }
     setGrid(size[count]);
   };
-  const handleFilter = (type) => {
-    setFilter(type);
+  const handleFilter = (e) => {
+    setFilter(e.target.value);
   };
 
   return (
@@ -38,72 +51,37 @@ function App() {
           justifyContent={"end"}
           paddingTop={1.5}
           margin={0.5}
-          sx={{ display: { xs: "none", sm: "flex" } }}
+          display="flex"
         >
-          {filter === "" ? (
-            <Button variant="contained" disabled>
-              All
-            </Button>
-          ) : (
-            <Button variant="contained" onClick={() => handleFilter("")}>
-              All
-            </Button>
-          )}
-          {filter === "favourite" ? (
-            <Button variant="contained" disabled>
-              Favourites
-            </Button>
-          ) : (
+          <Box pl={1} sx={{ flexGrow: { xs: 1, sm: 0.2 } }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">
+                {FILTER_TITLE}
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                style={{ background: "#ffffff" }}
+                value={filter}
+                label={FILTER_TITLE}
+                onChange={handleFilter}
+              >
+                {filterList.map(({ value, label }) => {
+                  return <MenuItem value={value}>{label}</MenuItem>;
+                })}
+              </Select>
+            </FormControl>
+          </Box>
+          <Box pl={1} sx={{ display: { xs: "none", sm: "flex" } }}>
             <Button
+              size="large"
               variant="contained"
-              onClick={() => handleFilter("Favourite")}
+              startIcon={<RiGridFill />}
+              onClick={toggleGrid}
             >
-              Favourites
+              {TOGGLE_GRID}
             </Button>
-          )}
-          {filter === "friend" ? (
-            <Button variant="contained" disabled>
-              Friends
-            </Button>
-          ) : (
-            <Button variant="contained" onClick={() => handleFilter("Friend")}>
-              Friends
-            </Button>
-          )}
-          {filter === "family" ? (
-            <Button variant="contained" disabled>
-              Family
-            </Button>
-          ) : (
-            <Button variant="contained" onClick={() => handleFilter("Family")}>
-              Family
-            </Button>
-          )}
-          {filter === "business" ? (
-            <Button variant="contained" disabled>
-              Business
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              onClick={() => handleFilter("Business")}
-            >
-              Business
-            </Button>
-          )}
-          {filter === "other" ? (
-            <Button variant="contained" disabled>
-              Other
-            </Button>
-          ) : (
-            <Button variant="contained" onClick={() => handleFilter("Other")}>
-              Other
-            </Button>
-          )}
-          |
-          <Button variant="contained" onClick={toggleGrid}>
-            Toggle Grid
-          </Button>
+          </Box>
         </Grid>
         <ContactList
           searchQuery={searchQuery}

@@ -11,8 +11,9 @@ export const PLACEHOLDER_EMAIL = "Email";
 export const PLACEHOLDER_CATEGORY = "Category";
 
 export const EMPTY_LIST_A = "Your contact list is empty.";
-
 export const EMPTY_LIST_B = "Create a new contact to populate your list";
+export const FILTER_TITLE = "Filter by";
+export const TOGGLE_GRID = "Toggle Grid";
 export const NO_RESULTS = "No Contacts Found";
 
 export const NAV_TITLE = "Contact Manager";
