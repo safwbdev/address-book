@@ -19,7 +19,8 @@ const Index = (props) => {
         .match(props.searchQuery.toLocaleLowerCase());
     });
   }
-  console.log(listState);
+  console.log(props.filter);
+
   return (
     <Grid
       container
@@ -61,18 +62,55 @@ const Index = (props) => {
           </Typography>
         </Grid>
       )}
-      {collection.map((val) => (
-        <Grid
-          key={val.id}
-          item
-          xs={12}
-          sm={props.gridCheck}
-          md={props.gridCheck}
-          sx={{ padding: { xs: "1em 0 !important", sm: "0.5em !important" } }}
-        >
-          <ContactCard data={val} handleRemove={handleRemove} />
-        </Grid>
-      ))}
+      {collection.map((val) => {
+        if (props.filter === val.category) {
+          return (
+            <Grid
+              key={val.id}
+              item
+              xs={12}
+              sm={props.gridCheck}
+              md={props.gridCheck}
+              sx={{
+                padding: { xs: "1em 0 !important", sm: "0.5em !important" },
+              }}
+            >
+              <ContactCard data={val} handleRemove={handleRemove} />
+            </Grid>
+          );
+        } else if (props.filter === "Favourite" && val.favorite === true) {
+          return (
+            <Grid
+              key={val.id}
+              item
+              xs={12}
+              sm={props.gridCheck}
+              md={props.gridCheck}
+              sx={{
+                padding: { xs: "1em 0 !important", sm: "0.5em !important" },
+              }}
+            >
+              <ContactCard data={val} handleRemove={handleRemove} />
+            </Grid>
+          );
+        } else if (props.filter === "") {
+          return (
+            <Grid
+              key={val.id}
+              item
+              xs={12}
+              sm={props.gridCheck}
+              md={props.gridCheck}
+              sx={{
+                padding: { xs: "1em 0 !important", sm: "0.5em !important" },
+              }}
+            >
+              <ContactCard data={val} handleRemove={handleRemove} />
+            </Grid>
+          );
+        }
+        return null;
+      })}
     </Grid>
   );
 };
